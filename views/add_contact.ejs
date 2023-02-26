@@ -1,0 +1,28 @@
+<!-- include Header -->
+    <%- include('include/_header.ejs')%>
+<!-- /include Header-->
+
+<!-- Main Site -->
+    <main id="site-main">
+        <div class="container">
+            <div class="box-nav d-flex-justify-between">
+                <div class="filter">
+                    <a href="/"><i class="fas fa-angle-double-left"></i> Tous les utilisateurs</a>
+                </div>
+            </div>
+
+            <div class="form-title text-center">
+                <h2 class="text-dark">Nouveau contact</h2>
+                <span class="text-light">Utilisez le formulaire ci-dessous pour créer un nouveau contact</span>
+            </div>
+
+            <!-- include add user form -->
+                <%- include('include/_form.ejs')%>
+            <!-- /include footer-->
+        </div>
+    </main>
+<!-- /Main Site-->
+
+<!-- include footer -->
+    <%- include('include/_footer.ejs')%>
+<!-- /include footer-->

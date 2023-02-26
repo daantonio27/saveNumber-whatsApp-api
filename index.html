@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Send Facebook Message</title>
+    <style>
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      input[type="text"] {
+        padding: 5px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 100%;
+      }
+
+      button[type="submit"] {
+        padding: 10px;
+        font-size: 16px;
+        background-color: #428bca;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #3071a9;
+      }
+
+      .message {
+        margin-top: 20px;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .success {
+        background-color: #d4edda;
+        color: #155724;
+        border-color: #c3e6cb;
+      }
+
+      .error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border-color: #f5c6cb;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Send Facebook Message</h1>
+    <form id="message-form">
+      <label for="to">To:</label>
+      <input type="text" id="to" name="to" required>
+      <button type="submit">Send Message</button>
+    </form>
+    <div id="message"></div>
+
+    <script>
+      const form = document.getElementById('message-form');
+      const messageDiv = document.getElementById('message');
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const to = document.getElementById('to').value;
+        sendMessage(to);
+      });
+
+      function sendMessage(to) {
+        const options = {
+          url: 'https://graph.facebook.com/v15.0/106663595689364/messages',
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer EAAOphJFFJygBAK9SPriTwK0tylIY3b43czZCq9AliUHK4UQSHMT6TWLPZCXnC9JHhFsuy5D0MAGd2jlfXnDLZBNXb7NiY7MZArZCCsmFSUyMfCUnPzbL5rX1L4xLr1YH5R7P3ZAPrZCOKE8x2XZBu0jN8RTPjQ0y1Qus2ZAAuEBC40Q3R4QVltpT44m0TUFL9KGrPMvKNNOA00jTHspNZAv0dn',
+            'Content-Type': 'application/json'
+          },
+          json: {
+            messaging_product: 'whatsapp',
+            to: to,
+            type: 'template',
+            template: {
+              name: 'hello_world',
+              language: {
+                code: 'en_US'
+              }
+            }
+          }
+        };
+
+        fetch(options.url, {
+          method: 'POST',
+          headers: options.headers,
+          body: JSON.stringify(options.json)
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Failed to send message.');
+      }
+    })
+    .then(json => {
+      const message = `Message sent to ${to}.`;
+      showMessage(message, 'success');
+    })
+    .catch(error => {
+      const message = error.message;
+      showMessage(message, 'error');
+    });
+  }
+
+  function showMessage(message, type) {
+    messageDiv.textContent = message;
+    messageDiv.classList.add(type);
+    setTimeout(() => {
+      messageDiv.textContent = '';
+      messageDiv.classList.remove(type);
+    }, 5000);
+  }
+</script>
+</body>
+</html>

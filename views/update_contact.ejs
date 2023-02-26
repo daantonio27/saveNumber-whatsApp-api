@@ -1,0 +1,66 @@
+<!-- include Header -->
+    <%- include('include/_header.ejs')%>
+<!-- /include Header-->
+
+<!-- Main Site -->
+    <main id="site-main">
+        <div class="container">
+            <div class="box-nav d-flex-justify-between">
+                <div class="filter">
+                    <a href="/"><i class="fas fa-angle-double-left"></i> Tous les utilisateurs</a>
+                </div>
+            </div>
+
+            <div class="form-title text-center">
+                <h2 class="text-dark">Modifier contact</h2>
+                <span class="text-light">Utilisez le formulaire ci-dessous pour modifier un contact</span>
+            </div>
+
+            <!-- include add user form -->
+                <!-- form handling -->
+                    <form method="POST" id="update_contact">
+                        <div class="new_user">
+                            <div class="form-group">
+                                <label for="nom" class="text-light">Nom</label>
+                                <input type="hidden" name="id" value="">
+                                <input type="text" name="name" value="" placeholder="Da">
+                            </div>
+                            <div class="form-group">
+                                <label for="prenom" class="text-light">Prénom</label>
+                                <input type="text" name="prenom" value="" placeholder="Antonio">
+                            </div>
+                            <div class="form-group">
+                                <label for="tel" class="text-light">Numéro téléphone</label>
+                                <input type="text" name="tel" value="" placeholder="776795513">
+                            </div>
+                            <div class="form-group">
+                                <label for="adresse" class="text-light">Adresse</label>
+                                <input type="text" name="adresse" value="" placeholder="Fass Delorme">
+                            </div>
+                            <div class="form-group">
+                                <label for="bname" class="text-light">Banque</label>
+                                <input type="text" name="bname" value="" placeholder="BCEAO">
+                            </div>
+                            <div class="form-group">
+                                <label for="compte" class="text-light">Compte</label>
+                                <input type="text" name="compte" value="" placeholder="B0025698">
+                            </div>
+                            <div class="form-group">
+                                <label for="solde" class="text-light">Solde</label>
+                                <input type="text" name="solde" value="" placeholder="10025698">
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn text-dark update">Enregistrer</button>
+                            </div>
+                        </div>
+                        
+                    </form>
+            <!-- /include footer-->
+        </div>
+    </main>
+<!-- /Main Site-->
+
+<!-- include footer -->
+    <%- include('include/_footer.ejs')%>
+<!-- /include footer-->
