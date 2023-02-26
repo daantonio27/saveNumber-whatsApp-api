@@ -1,5 +1,7 @@
 const request = require("request");
 const http = require("http");
+const fetch = require("node-fetch");
+
 
 const server = http.createServer((req, res) => {
   if (req.url === "/") {
